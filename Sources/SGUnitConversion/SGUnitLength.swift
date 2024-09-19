@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// UnitLength.swift
+// SGUnitLength.swift
 //
 // This Swift source file is part of the SGUnitConversion package 
 // by Paul C. L. Willmott.
@@ -27,13 +27,13 @@
 //
 // Revision History:
 //
-//     19/09/2024  Paul Willmott - UnitLength.swift created
+//     19/09/2024  Paul Willmott - SGUnitLength.swift created
 // -----------------------------------------------------------------------------
 
 import Foundation
 import AppKit
 
-public enum UnitLength : UInt8, CaseIterable, Sendable {
+public enum SGUnitLength : UInt8, CaseIterable, Sendable {
   
   // MARK: Enumeration
   
@@ -49,11 +49,11 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
   // MARK: Public Properties
   
   public var title : String {
-    return UnitLength.titles[self]!
+    return SGUnitLength.titles[self]!
   }
 
   public var symbol : String {
-    return UnitLength.symbols[self]!
+    return SGUnitLength.symbols[self]!
   }
 
   // MARK: Private Class Properties
@@ -62,7 +62,7 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
     
     var map = "<map>\n"
 
-    for item in UnitLength.allCases {
+    for item in SGUnitLength.allCases {
       map += "<relation><property>\(item.rawValue)</property><value>\(item.title)</value></relation>\n"
     }
 
@@ -74,7 +74,7 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
 
   // MARK: Private Class Properties
   
-  private static let titles : [UnitLength:String] = [
+  private static let titles : [SGUnitLength:String] = [
     .millimeters : String(localized: "Millimeters"),
     .centimeters : String(localized: "Centimeters"),
     .meters      : String(localized: "Meters"),
@@ -85,7 +85,7 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
     .mileschains : String(localized: "Miles.Chains"),
   ]
 
-  private static let symbols : [UnitLength:String] = [
+  private static let symbols : [SGUnitLength:String] = [
     .millimeters : String(localized: "mm",    comment: "Used for the abbreviation of millimeters"),
     .centimeters : String(localized: "cm",    comment: "Used for the abbreviation of centimeters"),
     .meters      : String(localized: "m",     comment: "Used for the abbreviation of meters"),
@@ -111,7 +111,7 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
   // MARK: Private Class Methods
   
   // The factor to be applied to a length in units to get a length in cm.
-  public static func toCM(units: UnitLength) -> Double {
+  public static func toCM(units: SGUnitLength) -> Double {
     
     switch units {
     case .millimeters:
@@ -135,13 +135,13 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
   }
   
   // The factor to be applied to a length in cm to get a length in units.
-  public static func fromCM(units: UnitLength) -> Double {
+  public static func fromCM(units: SGUnitLength) -> Double {
     return 1.0 / toCM(units: units)
   }
 
   // MARK: Public Class Methods
 
-  public static func convert(fromValue:Double, fromUnits:UnitLength, toUnits:UnitLength) -> Double {
+  public static func convert(fromValue:Double, fromUnits:SGUnitLength, toUnits:SGUnitLength) -> Double {
 
     var temp = fromValue
     
@@ -168,7 +168,7 @@ public enum UnitLength : UInt8, CaseIterable, Sendable {
 
   @MainActor public static func populate(comboBox: NSComboBox) {
     comboBox.removeAllItems()
-    for item in UnitLength.allCases {
+    for item in SGUnitLength.allCases {
       comboBox.addItem(withObjectValue: item.title)
     }
   }
