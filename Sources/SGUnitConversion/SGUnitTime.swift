@@ -48,7 +48,7 @@ public enum SGUnitTime : UInt8, CaseIterable, Sendable {
     return SGUnitTime.titles[self]!
   }
 
-  public var symbol : String {
+  public var symbol  : String {
 
     return SGUnitTime.symbols[self]!
   }
